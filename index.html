@@ -129,7 +129,6 @@ body{
   transition:background-color .35s ease,color .35s ease;
 }
 
-/* faint film grain over everything */
 body::after{
   content:"";
   position:fixed;inset:0;z-index:60;pointer-events:none;
@@ -148,7 +147,6 @@ a{color:var(--accent)}
 .wrap{max-width:var(--wrap);margin-inline:auto}
 .sec{padding:clamp(3.5rem,8vw,6.5rem) var(--gutter)}
 
-/* ---------- top scroll progress ---------- */
 .progress{
   position:fixed;top:0;left:0;right:0;height:3px;z-index:40;
   transform:scaleX(0);transform-origin:0 50%;
@@ -156,7 +154,6 @@ a{color:var(--accent)}
   will-change:transform;
 }
 
-/* ---------- animated aurora backdrop ---------- */
 .aurora{
   position:absolute;inset:-30% -15% auto -15%;height:150%;
   z-index:0;pointer-events:none;overflow:hidden;
@@ -176,7 +173,6 @@ a{color:var(--accent)}
   @keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(3rem,-4rem,0) scale(1.15)}}
 }
 
-/* ---------- hero ---------- */
 .hero{position:relative;padding-top:clamp(3.5rem,10vw,7rem);isolation:isolate}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:clamp(2.25rem,5vw,4rem)}
 @media (min-width:920px){.hero .wrap{grid-template-columns:1.25fr 1fr;align-items:end}}
@@ -195,7 +191,6 @@ a{color:var(--accent)}
 .lede{font-size:clamp(1.15rem,2vw,1.38rem);margin:1.6rem 0 0;color:var(--muted);max-width:56ch}
 .hero .actions{margin-top:2.25rem}
 
-/* ---------- buttons ---------- */
 .actions{display:flex;flex-wrap:wrap;gap:.75rem}
 .btn{
   display:inline-block;font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;
@@ -214,7 +209,6 @@ a{color:var(--accent)}
 .btn--line{border-color:var(--line);color:var(--ink);background:var(--surface)}
 .btn--line:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-2)}
 
-/* ---------- at a glance ---------- */
 .glance{
   position:relative;background:var(--surface);border:1px solid var(--line);
   border-radius:22px;padding:1.6rem 1.6rem 1.45rem;
@@ -233,7 +227,6 @@ a{color:var(--accent)}
   .glance dd{margin-bottom:.85rem}
 }
 
-/* ---------- section headings ---------- */
 .head{margin-bottom:clamp(2rem,5vw,3.5rem)}
 .head p{margin:1rem 0 0;color:var(--muted)}
 .eyebrow{
@@ -247,7 +240,6 @@ a{color:var(--accent)}
   font-size:.72rem;letter-spacing:.04em;
 }
 
-/* ---------- projects ---------- */
 .projects .project + .project{margin-top:clamp(3.5rem,9vw,6.5rem)}
 .project{display:grid;grid-template-columns:1fr;gap:1.75rem 3.5rem;align-items:center}
 @media (min-width:880px){
@@ -276,7 +268,6 @@ a{color:var(--accent)}
   :root:not([data-theme="light"]) .ill--c::after{opacity:.25}
 }
 
-/* svg paint tokens */
 .row,.page{fill:var(--surface);stroke:var(--line);stroke-width:1}
 .f-ink{fill:var(--ink)}
 .f-soft{fill:var(--muted);opacity:.5}
@@ -313,7 +304,6 @@ a{color:var(--accent)}
 }
 .project:hover .tags li{border-color:var(--accent);color:var(--accent)}
 
-/* ---------- skills ---------- */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem}
 .skill-card{
   position:relative;background:var(--surface);border:1px solid var(--line);
@@ -334,7 +324,6 @@ a{color:var(--accent)}
 .skill-card li{padding:.32rem 0;color:var(--ink)}
 .skill-card li::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.55;margin-right:.7rem;vertical-align:middle}
 
-/* ---------- credentials ---------- */
 .creds{display:grid;grid-template-columns:1fr;gap:2rem 3.5rem;align-items:start}
 @media (min-width:880px){.creds{grid-template-columns:1fr 1.15fr}}
 .degree{
@@ -367,7 +356,6 @@ a{color:var(--accent)}
 .certs strong{font-family:var(--display);font-weight:600;font-size:1.18rem;line-height:1.3}
 .certs span{color:var(--muted);font-size:.95rem;font-family:var(--mono)}
 
-/* ---------- contact ---------- */
 .contact{
   position:relative;border-radius:34px;overflow:hidden;
   padding:clamp(2.25rem,6vw,4.25rem);
@@ -391,7 +379,6 @@ a{color:var(--accent)}
 
 footer{padding:2.5rem var(--gutter) 2rem;color:var(--muted);font-size:.9rem;font-family:var(--mono)}
 
-/* ---------- dock ---------- */
 .dock{
   position:fixed;left:0;right:0;bottom:0;z-index:30;
   background:var(--bar);color:var(--on-bar);
@@ -424,7 +411,6 @@ footer{padding:2.5rem var(--gutter) 2rem;color:var(--muted);font-size:.9rem;font
 .dock :focus-visible{outline-color:var(--sun)}
 .tab:focus-visible{outline-offset:-3px}
 
-/* ---------- reveal on scroll ---------- */
 .reveal{
   opacity:0;transform:translateY(26px);
   transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);
@@ -432,7 +418,6 @@ footer{padding:2.5rem var(--gutter) 2rem;color:var(--muted);font-size:.9rem;font
 }
 .reveal.in{opacity:1;transform:none}
 
-/* hero entrance */
 @media (prefers-reduced-motion:no-preference){
   .rise{animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -682,9 +667,9 @@ footer{padding:2.5rem var(--gutter) 2rem;color:var(--muted);font-size:.9rem;font
         <h2 id="contact-h">Let&rsquo;s talk</h2>
         <p>I&rsquo;m open to internships, freelance projects, and study or scholarship opportunities. Reach me on any of these.</p>
         <div class="actions">
-          <a class="btn btn--solid" href="#contact" data-link="email">Email me</a>
-          <a class="btn btn--line" href="#contact" data-link="github">GitHub</a>
-          <a class="btn btn--line" href="#contact" data-link="linkedin">LinkedIn</a>
+          <a class="btn btn--solid" href="mailto:blessedmavhemwa@gmail.com" data-link="email">Email me</a>
+          <a class="btn btn--line" href="https://github.com/blessedmavhemwa-coder" target="_blank" rel="noopener noreferrer" data-link="github">GitHub</a>
+          <a class="btn btn--line" href="https://www.linkedin.com/in/blessed-mavhemwa-780664395/" target="_blank" rel="noopener noreferrer" data-link="linkedin">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -713,13 +698,23 @@ footer{padding:2.5rem var(--gutter) 2rem;color:var(--muted);font-size:.9rem;font
   var root=document.documentElement;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Fill these in and the contact buttons become live links. */
-  var LINKS={email:'blessedmavhemwa@gmail.com',github:'https://github.com/blessedmavhemwa-coder',linkedin:'https://www.linkedin.com/in/blessed-mavhemwa-780664395'};
+  /* Keep the contact buttons in sync with the links below.
+     The href values are already set in the HTML as a no-JS fallback. */
+  var LINKS={
+    email:'blessedmavhemwa@gmail.com',
+    github:'https://github.com/blessedmavhemwa-coder',
+    linkedin:'https://www.linkedin.com/in/blessed-mavhemwa-780664395/'
+  };
   document.querySelectorAll('[data-link]').forEach(function(a){
     var key=a.getAttribute('data-link'),val=LINKS[key];
     if(!val)return;
-    if(key==='email'){a.href='mailto:'+val;}
-    else{a.href=val;a.target='_blank';a.rel='noopener';}
+    if(key==='email'){
+      a.href='mailto:'+val;
+    }else{
+      a.href=val;
+      a.target='_blank';
+      a.rel='noopener noreferrer';
+    }
   });
 
   /* Light and dark theme */
