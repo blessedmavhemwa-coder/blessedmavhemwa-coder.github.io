@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blessed | Data Science and Systems student</title>
+<meta name="description" content="Portfolio of Blessed, a Data Science and Systems student at the University of Zimbabwe who builds web systems with Python, Flask, MySQL and Power BI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<script>
+try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}
+</script>
+<style>
+:root{
+  --bg:#F5F4F8;--surface:#FFFFFF;--ink:#1D1A33;--muted:#625F7B;
+  --accent:#5B3FD0;--on-accent:#FFFFFF;--tint:#E7E2F8;--line:#D9D5EA;
+  --sun:#F5C518;--on-sun:#1D1A33;--sun-tint:#FBEFC0;--deep:#1D1A33;
+  --bar:#1D1A33;--on-bar:#E9E6F8;
+  --display:"Bricolage Grotesque","Trebuchet MS","Segoe UI",system-ui,sans-serif;
+  --text:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --gutter:clamp(1.25rem,5vw,3rem);
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#14112A;--surface:#1F1B3D;--ink:#ECE9F8;--muted:#A9A5C6;
+    --accent:#A48FFF;--on-accent:#14112A;--tint:#262150;--line:#34305C;
+    --sun-tint:#3B3413;--deep:#0F0C26;--bar:#0B0920;--on-bar:#E9E6F8;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14112A;--surface:#1F1B3D;--ink:#ECE9F8;--muted:#A9A5C6;
+  --accent:#A48FFF;--on-accent:#14112A;--tint:#262150;--line:#34305C;
+  --sun-tint:#3B3413;--deep:#0F0C26;--bar:#0B0920;--on-bar:#E9E6F8;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--text);font-size:1.125rem;line-height:1.65;
+  padding-bottom:5.5rem;
+}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;letter-spacing:-0.02em;text-wrap:balance}
+h1{font-size:clamp(2.6rem,7.2vw,4.9rem);font-weight:800}
+h2{font-size:clamp(1.9rem,4.2vw,2.75rem);font-weight:800}
+h3{font-size:1.5rem;font-weight:600;letter-spacing:-0.01em}
+p{margin:0 0 1em;max-width:62ch;text-wrap:pretty}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:1120px;margin-inline:auto}
+.sec{padding:clamp(3.5rem,8vw,6rem) var(--gutter)}
+.hero{padding-top:clamp(3rem,9vw,6.5rem)}
+.head{margin-bottom:clamp(2rem,5vw,3.5rem)}
+.head p{margin:1rem 0 0;color:var(--muted)}
+
+/* Buttons */
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{
+  display:inline-block;font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;
+  padding:.85em 1.5em;border-radius:999px;text-decoration:none;border:2px solid var(--accent);
+  transition:background-color .15s,color .15s;
+}
+.btn--solid{background:var(--accent);color:var(--on-accent)}
+.btn--solid:hover{background:transparent;color:var(--accent)}
+.btn--line{background:transparent;color:var(--accent)}
+.btn--line:hover{background:var(--accent);color:var(--on-accent)}
+
+/* Overview */
+.hero .wrap{display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,4rem)}
+@media (min-width:920px){.hero .wrap{grid-template-columns:1.25fr 1fr;align-items:end}}
+.lede{font-size:clamp(1.15rem,2vw,1.35rem);margin:1.5rem 0 0}
+.hero .actions{margin-top:2rem}
+.glance{
+  background:var(--surface);border:1px solid var(--line);border-top:8px solid var(--sun);
+  border-radius:14px;padding:1.4rem 1.5rem 1.25rem;
+}
+.glance h2{font-size:1.2rem;letter-spacing:0;margin-bottom:1.1rem}
+.glance dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.9rem 1.5rem}
+.glance dt{color:var(--muted);font-size:.95rem;line-height:1.6}
+.glance dd{margin:0;font-size:1rem;line-height:1.5}
+@media (max-width:520px){
+  .glance dl{grid-template-columns:1fr;gap:.1rem}
+  .glance dd{margin-bottom:.8rem}
+}
+
+/* Projects */
+.projects .project + .project{margin-top:clamp(3rem,8vw,5.5rem)}
+.project{display:grid;grid-template-columns:1fr;gap:1.5rem 3.5rem;align-items:center}
+@media (min-width:880px){
+  .project{grid-template-columns:1fr 1fr}
+  .project:nth-child(even) .ill{order:2}
+}
+.ill{border-radius:24px;overflow:hidden;aspect-ratio:10/7}
+.ill svg{display:block;width:100%;height:100%}
+.ill--a{background:var(--tint)}
+.ill--b{background:var(--deep)}
+.ill--c{background:var(--sun-tint)}
+.row,.page{fill:var(--surface);stroke:var(--line);stroke-width:1}
+.f-ink{fill:var(--ink)}
+.f-soft{fill:var(--muted);opacity:.5}
+.f-accent{fill:var(--accent)}
+.f-sun{fill:var(--sun)}
+.f-line{fill:var(--line)}
+.n-line{stroke:#5A5490;stroke-width:2;fill:none}
+.n-ring{fill:none;stroke:#8A78E8;stroke-width:1.5;stroke-dasharray:4 7}
+.n-node{fill:#A48FFF}
+.n-out{fill:#ECE9F8;opacity:.9}
+.n-core-in{fill:#1D1A33}
+
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;margin:0 0 .9rem;color:var(--muted);font-size:.98rem}
+.status{
+  font-family:var(--display);font-weight:600;font-size:.85rem;line-height:1.3;
+  padding:.2em .8em;border-radius:999px;background:var(--tint);color:var(--ink);
+}
+.status--wip{background:var(--sun);color:var(--on-sun)}
+.project h3{margin-bottom:.9rem}
+.tags{list-style:none;margin:1.4rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.tags li{
+  font-family:var(--display);font-size:.88rem;line-height:1.3;padding:.3em .85em;
+  border-radius:999px;border:1px solid var(--line);background:var(--surface);
+}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.5rem 3rem}
+.skills h3{font-size:1.3rem;margin-bottom:.8rem}
+.skills ul{list-style:none;margin:0;padding:0}
+.skills li{padding:.3rem 0}
+
+/* Credentials */
+.creds{display:grid;grid-template-columns:1fr;gap:2.5rem 4rem;align-items:start}
+@media (min-width:880px){.creds{grid-template-columns:1fr 1.2fr}}
+.degree{background:var(--tint);border-radius:28px;padding:clamp(1.5rem,4vw,2.5rem)}
+.degree h3{margin-bottom:.7rem}
+.degree p{margin:0;color:var(--muted)}
+.certs{list-style:none;margin:0;padding:0}
+.certs li{display:flex;flex-direction:column;padding:.4rem 0 .4rem 1.25rem;border-left:4px solid var(--accent)}
+.certs li + li{margin-top:1.1rem}
+.certs strong{font-family:var(--display);font-weight:600;font-size:1.2rem;line-height:1.3}
+.certs span{color:var(--muted);font-size:1rem}
+
+/* Contact */
+.contact{background:var(--tint);border-radius:32px;padding:clamp(2rem,6vw,4rem)}
+.contact h2{margin-bottom:1rem}
+.contact p{margin-bottom:1.75rem}
+
+footer{padding:0 var(--gutter) 2rem;color:var(--muted);font-size:.95rem}
+
+/* Page tabs, styled like report pages */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:10;
+  background:var(--bar);color:var(--on-bar);border-top:1px solid var(--line);
+  padding:.5rem var(--gutter) calc(.5rem + env(safe-area-inset-bottom,0px));
+}
+.dock-in{max-width:1120px;margin-inline:auto;display:flex;align-items:center;gap:.75rem}
+.tabs{position:relative;display:flex;gap:.25rem;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:none;font-family:var(--display);font-weight:600;font-size:.95rem;line-height:1.2;
+  color:var(--on-bar);text-decoration:none;padding:.8em 1.1em;border-radius:8px;
+  transition:background-color .15s,color .15s;
+}
+.tab:hover{background:rgba(255,255,255,.12)}
+.tab[aria-current="location"]{background:var(--sun);color:var(--on-sun)}
+.mode{
+  flex:none;font-family:var(--display);font-weight:600;font-size:.9rem;line-height:1.2;
+  color:var(--on-bar);background:transparent;border:1px solid rgba(255,255,255,.35);
+  border-radius:8px;padding:.7em 1em;cursor:pointer;
+}
+.mode:hover{background:rgba(255,255,255,.12)}
+.mode[aria-pressed="true"]{background:var(--sun);color:var(--on-sun);border-color:var(--sun)}
+.dock :focus-visible{outline-color:var(--sun)}
+.tab:focus-visible{outline-offset:-3px}
+
+/* One page-load moment for the overview */
+@media (prefers-reduced-motion:no-preference){
+  .rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<main>
+  <section id="overview" class="sec hero" aria-labelledby="hi">
+    <div class="wrap">
+      <div>
+        <h1 id="hi" class="rise">Hi, I&rsquo;m Blessed. I build web systems that work with data.</h1>
+        <p class="lede rise" style="--d:.1s">I&rsquo;m a second-year Data Science and Systems student at the University of Zimbabwe. I write Python and Flask apps, design MySQL databases, and turn data into Power BI reports.</p>
+        <div class="actions rise" style="--d:.2s">
+          <a class="btn btn--solid" href="#projects">See my projects</a>
+          <a class="btn btn--line" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <aside class="glance rise" style="--d:.3s" aria-labelledby="glance-h">
+        <h2 id="glance-h">At a glance</h2>
+        <dl>
+          <dt>Studying</dt>
+          <dd>BSc Honours in Data Science and Systems, University of Zimbabwe</dd>
+          <dt>Year</dt>
+          <dd>Second</dd>
+          <dt>Works with</dt>
+          <dd>Python, Flask, MySQL, Power BI</dd>
+          <dt>Writing</dt>
+          <dd>A book on Power BI</dd>
+          <dt>Certificates</dt>
+          <dd>Four, from ICDL, Future Interns, Kaggle and Harvard CS50</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section id="projects" class="sec" aria-labelledby="projects-h">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="projects-h">Projects</h2>
+        <p>Two systems I&rsquo;ve built and one book I&rsquo;m writing.</p>
+      </div>
+
+      <div class="projects">
+        <article class="project">
+          <div class="ill ill--a">
+            <svg viewBox="0 0 400 280" role="img" aria-label="Illustration of a list of property records with status labels">
+              <rect class="row" x="28" y="24" width="344" height="48" rx="10"/>
+              <path class="f-accent" d="M46 58v-14l12-10 12 10v14z"/>
+              <rect class="f-ink" x="88" y="37" width="150" height="9" rx="4.5"/>
+              <rect class="f-soft" x="88" y="53" width="96" height="7" rx="3.5"/>
+              <rect class="f-sun" x="296" y="38" width="60" height="20" rx="10"/>
+
+              <rect class="row" x="28" y="86" width="344" height="48" rx="10"/>
+              <path class="f-accent" d="M46 120v-14l12-10 12 10v14z"/>
+              <rect class="f-ink" x="88" y="99" width="126" height="9" rx="4.5"/>
+              <rect class="f-soft" x="88" y="115" width="110" height="7" rx="3.5"/>
+              <rect class="f-accent" x="296" y="100" width="60" height="20" rx="10"/>
+
+              <rect class="row" x="28" y="148" width="344" height="48" rx="10"/>
+              <path class="f-accent" d="M46 182v-14l12-10 12 10v14z"/>
+              <rect class="f-ink" x="88" y="161" width="160" height="9" rx="4.5"/>
+              <rect class="f-soft" x="88" y="177" width="80" height="7" rx="3.5"/>
+              <rect class="f-sun" x="296" y="162" width="60" height="20" rx="10"/>
+
+              <rect class="row" x="28" y="210" width="344" height="48" rx="10"/>
+              <path class="f-accent" d="M46 244v-14l12-10 12 10v14z"/>
+              <rect class="f-ink" x="88" y="223" width="138" height="9" rx="4.5"/>
+              <rect class="f-soft" x="88" y="239" width="104" height="7" rx="3.5"/>
+              <rect class="f-accent" x="296" y="224" width="60" height="20" rx="10"/>
+            </svg>
+          </div>
+          <div>
+            <p class="meta"><span class="status">Built</span>Full-stack web application</p>
+            <h3>Real Estate Management System (REMS)</h3>
+            <p>A web app for managing real estate, with user accounts and login, validated forms, and a MySQL database behind it. I also wrote a script that fills the database with realistic sample data, so I could test the system properly.</p>
+            <ul class="tags" aria-label="Tools used">
+              <li>Python</li><li>Flask</li><li>Flask-SQLAlchemy</li><li>Flask-Login</li><li>Flask-WTF</li><li>MySQL</li><li>Faker</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="ill ill--b">
+            <svg viewBox="0 0 400 280" role="img" aria-label="Illustration of a network of connected nodes around a central core">
+              <circle class="n-ring" cx="200" cy="140" r="72"/>
+              <g class="n-line">
+                <line x1="200" y1="140" x2="272" y2="140"/>
+                <line x1="200" y1="140" x2="236" y2="202.4"/>
+                <line x1="200" y1="140" x2="164" y2="202.4"/>
+                <line x1="200" y1="140" x2="128" y2="140"/>
+                <line x1="200" y1="140" x2="164" y2="77.6"/>
+                <line x1="200" y1="140" x2="236" y2="77.6"/>
+                <line x1="272" y1="140" x2="330" y2="92"/>
+                <line x1="236" y1="202.4" x2="312" y2="222"/>
+                <line x1="164" y1="202.4" x2="88" y2="218"/>
+                <line x1="164" y1="77.6" x2="86" y2="66"/>
+              </g>
+              <circle class="n-out" cx="330" cy="92" r="6"/>
+              <circle class="n-out" cx="312" cy="222" r="6"/>
+              <circle class="n-out" cx="88" cy="218" r="6"/>
+              <circle class="n-out" cx="86" cy="66" r="6"/>
+              <circle class="n-node" cx="272" cy="140" r="9"/>
+              <circle class="n-node" cx="236" cy="202.4" r="9"/>
+              <circle class="n-node" cx="164" cy="202.4" r="9"/>
+              <circle class="n-node" cx="128" cy="140" r="9"/>
+              <circle class="n-node" cx="164" cy="77.6" r="9"/>
+              <circle class="f-sun" cx="236" cy="77.6" r="9"/>
+              <circle class="f-sun" cx="200" cy="140" r="22"/>
+              <circle class="n-core-in" cx="200" cy="140" r="8"/>
+            </svg>
+          </div>
+          <div>
+            <p class="meta"><span class="status">Prototype</span>University capstone project</p>
+            <h3>AURA: Cognitive Audit &amp; Strategic Arbitrage Engine</h3>
+            <p>A prototype audit platform for The Institute of Internal Auditors, built under the theme &ldquo;From Findings to Foresight: Transforming Audit Intelligence into Strategic Value.&rdquo;</p>
+            <p>It brings together six modules: Alpha Dashboard, Causal AI Layer, Digital Twin Sandbox, Sentiment &amp; Culture Index, Autonomous Remediation, and Federated Learning Privacy Moat.</p>
+            <ul class="tags" aria-label="Tools used">
+              <li>Python</li><li>Flask</li><li>SQLite</li><li>Chart.js</li><li>vis.js</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="ill ill--c">
+            <svg viewBox="0 0 400 280" role="img" aria-label="Illustration of an open book with text on the left page and a bar chart on the right page">
+              <rect class="page" x="52" y="44" width="148" height="192" rx="8"/>
+              <rect class="page" x="200" y="44" width="148" height="192" rx="8"/>
+              <rect class="f-line" x="199" y="44" width="2" height="192"/>
+
+              <rect class="f-ink" x="72" y="68" width="88" height="10" rx="5"/>
+              <rect class="f-soft" x="72" y="96" width="104" height="6" rx="3"/>
+              <rect class="f-soft" x="72" y="110" width="96" height="6" rx="3"/>
+              <rect class="f-soft" x="72" y="124" width="104" height="6" rx="3"/>
+              <rect class="f-soft" x="72" y="138" width="70" height="6" rx="3"/>
+              <rect class="f-soft" x="72" y="160" width="104" height="6" rx="3"/>
+              <rect class="f-soft" x="72" y="174" width="88" height="6" rx="3"/>
+              <rect class="f-soft" x="72" y="188" width="104" height="6" rx="3"/>
+              <rect class="f-soft" x="72" y="202" width="52" height="6" rx="3"/>
+
+              <rect class="f-ink" x="220" y="68" width="70" height="8" rx="4"/>
+              <rect class="f-soft" x="220" y="84" width="48" height="6" rx="3"/>
+              <rect class="f-accent" x="224" y="160" width="14" height="30" rx="2"/>
+              <rect class="f-accent" x="244" y="138" width="14" height="52" rx="2"/>
+              <rect class="f-accent" x="264" y="150" width="14" height="40" rx="2"/>
+              <rect class="f-sun" x="284" y="116" width="14" height="74" rx="2"/>
+              <rect class="f-accent" x="304" y="132" width="14" height="58" rx="2"/>
+              <rect class="f-soft" x="220" y="190" width="108" height="2"/>
+            </svg>
+          </div>
+          <div>
+            <p class="meta"><span class="status status--wip">In progress</span>Book</p>
+            <h3>A book on Power BI</h3>
+            <p>I&rsquo;m writing a book about Power BI. Right now I&rsquo;m working on the chapter about creating visuals.</p>
+            <ul class="tags" aria-label="Topics">
+              <li>Power BI</li><li>Writing</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="sec" aria-labelledby="skills-h">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="skills-h">What I work with</h2>
+        <p>The tools behind the projects above, and what I&rsquo;ve studied along the way.</p>
+      </div>
+      <div class="skills">
+        <div>
+          <h3>Build</h3>
+          <ul>
+            <li>Python</li>
+            <li>Flask</li>
+            <li>Flask-SQLAlchemy</li>
+            <li>Flask-Login</li>
+            <li>Flask-WTF</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Store and analyse</h3>
+          <ul>
+            <li>MySQL</li>
+            <li>SQLite</li>
+            <li>Data analysis</li>
+            <li>Machine learning fundamentals</li>
+            <li>Test data with Faker</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Show data</h3>
+          <ul>
+            <li>Power BI</li>
+            <li>Chart.js</li>
+            <li>vis.js</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials" class="sec" aria-labelledby="creds-h">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="creds-h">Education and certificates</h2>
+      </div>
+      <div class="creds">
+        <div class="degree">
+          <h3>BSc Honours in Data Science and Systems</h3>
+          <p>University of Zimbabwe</p>
+          <p>Currently in second year</p>
+        </div>
+        <ul class="certs">
+          <li><strong>Data Science and Analytics</strong><span>Future Interns</span></li>
+          <li><strong>Machine Learning</strong><span>Kaggle</span></li>
+          <li><strong>CS50 AI with Python</strong><span>Harvard</span></li>
+          <li><strong>ICDL</strong><span>Digital skills certification</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="sec" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="contact">
+        <h2 id="contact-h">Let&rsquo;s talk</h2>
+        <p>I&rsquo;m open to internships, freelance projects, and study or scholarship opportunities. Reach me on any of these.</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="#contact" data-link="email">Email me</a>
+          <a class="btn btn--line" href="#contact" data-link="github">GitHub</a>
+          <a class="btn btn--line" href="#contact" data-link="linkedin">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 Blessed</div>
+</footer>
+
+<nav class="dock" aria-label="Page sections">
+  <div class="dock-in">
+    <div class="tabs" id="tabs">
+      <a class="tab" href="#overview" aria-current="location">Overview</a>
+      <a class="tab" href="#projects">Projects</a>
+      <a class="tab" href="#skills">Skills</a>
+      <a class="tab" href="#credentials">Credentials</a>
+      <a class="tab" href="#contact">Contact</a>
+    </div>
+    <button class="mode" id="mode" type="button" aria-pressed="false">Dark mode</button>
+  </div>
+</nav>
+
+<script>
+(function(){
+  var root=document.documentElement;
+
+  /* Fill these in and the contact buttons become live links. */
+  var LINKS={email:'',github:'',linkedin:''};
+  document.querySelectorAll('[data-link]').forEach(function(a){
+    var key=a.getAttribute('data-link'),val=LINKS[key];
+    if(!val)return;
+    if(key==='email'){a.href='mailto:'+val;}
+    else{a.href=val;a.target='_blank';a.rel='noopener';}
+  });
+
+  /* Light and dark theme */
+  var mode=document.getElementById('mode');
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':mq.matches;}
+  function sync(){mode.setAttribute('aria-pressed',String(isDark()));}
+  mode.addEventListener('click',function(){
+    var next=isDark()?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+    sync();
+  });
+  if(mq.addEventListener){mq.addEventListener('change',sync);}
+  sync();
+
+  /* Keep the active tab in step with the section on screen */
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var strip=document.getElementById('tabs');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var current='';
+  function activate(id){
+    if(id===current)return;
+    current=id;
+    tabs.forEach(function(t){
+      if(t.getAttribute('href')==='#'+id){
+        t.setAttribute('aria-current','location');
+        var left=t.offsetLeft-(strip.clientWidth-t.offsetWidth)/2;
+        strip.scrollTo({left:left,behavior:reduce?'auto':'smooth'});
+      }else{
+        t.removeAttribute('aria-current');
+      }
+    });
+  }
+  var sections=tabs.map(function(t){return document.querySelector(t.getAttribute('href'));});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting)activate(e.target.id);});
+    },{rootMargin:'-40% 0px -55% 0px'});
+    sections.forEach(function(s){io.observe(s);});
+  }
+  window.addEventListener('scroll',function(){
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4){activate('contact');}
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
