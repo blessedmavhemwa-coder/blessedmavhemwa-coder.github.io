@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Blessed Mavhemwa</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo">Blessed<span>Mavhemwa</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <h1 class="page-title">Get in Touch</h1>
+      <p class="page-subtitle">
+        Have a project or a question? Send me a message and I'll reply within a day or two.
+      </p>
+
+      <form class="form" action="#" method="POST">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="justify-self:start;">
+          Send Message
+        </button>
+      </form>
+
+      <p style="color:var(--muted); margin-top:24px; font-size:.9rem;">
+        Or email me directly at
+        <a href="mailto:blessedmavhemwa@gmail.com" style="color:var(--accent);">blessedmavhemwa@gmail.com</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span data-year></span> Blessed Mavhemwa. All rights reserved.</p>
+      <div class="socials">
+        <a href="https://github.com/blessedmavhemwa-coder" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/blessed-mavhemwa-780664395/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:blessedmavhemwa@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
