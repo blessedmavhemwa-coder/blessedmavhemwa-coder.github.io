@@ -60,6 +60,24 @@ body {
 .page-title { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 8px; }
 .page-subtitle { color: var(--muted); margin-bottom: 40px; }
 
+/* ---------- About header with photo ---------- */
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.about-header .page-subtitle { margin-bottom: 0; }
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;        /* circle; use var(--radius) for rounded square */
+  object-fit: cover;         /* crops instead of stretching */
+  border: 3px solid var(--accent);
+  flex-shrink: 0;
+}
+
 /* ---------- Hero ---------- */
 .hero {
   padding: 96px 0 80px;
@@ -169,4 +187,5 @@ body {
       url("../images/background.png");
     background-position: center, 70% center;
   }
+  .about-header { flex-direction: column; text-align: center; }
 }
