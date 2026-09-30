@@ -61,13 +61,22 @@ body {
 .page-subtitle { color: var(--muted); margin-bottom: 40px; }
 
 /* ---------- Hero ---------- */
-.hero { padding: 96px 0 80px; }
+.hero {
+  padding: 96px 0 80px;
+  background: url("../images/background.png") center right / cover no-repeat;
+}
 .hero h1 {
   font-size: clamp(2rem, 6vw, 3.4rem);
   line-height: 1.15; margin-bottom: 16px;
+  color: #14171f;
+  max-width: 640px; /* keeps text on the plain wood side, away from the laptop */
 }
-.hero h1 span { color: var(--accent); }
-.hero p { color: var(--muted); font-size: 1.1rem; max-width: 620px; margin-bottom: 32px; }
+.hero h1 span { color: #2f5fe0; } /* darker blue so it stays readable on light */
+.hero p { color: #3b4252; font-size: 1.1rem; max-width: 620px; margin-bottom: 32px; }
+
+/* Ghost button needs dark styling on the light image */
+.hero .btn-ghost { border-color: #14171f; color: #14171f; }
+.hero .btn-ghost:hover { background: rgba(20, 23, 31, .08); }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -154,5 +163,9 @@ body {
   .nav-links.open { display: flex; }
   .nav-links a { padding: 12px 16px; }
 
-  .hero { padding: 64px 0 48px; }
-}
+    .hero {
+    background-image:
+      linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.7)),
+      url("../images/background.png");
+    background-position: center, 70% center;
+  }
