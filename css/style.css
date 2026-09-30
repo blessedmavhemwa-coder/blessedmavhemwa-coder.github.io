@@ -14,7 +14,6 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: url("../images/background.png") center / cover no-repeat fixed;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -170,3 +169,4 @@ body {
       url("../images/background.png");
     background-position: center, 70% center;
   }
+}
